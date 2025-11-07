@@ -1,0 +1,78 @@
+What is 8 + 12?
+18
+20
+22
+24
+20
+
+
+What is the square root of 144?
+10
+11
+12
+13
+12
+
+
+If x = 5, what is the value of 3x + 2?
+15
+17
+20
+22
+17
+
+
+What is 7 × 9?
+56
+61
+63
+72
+63
+
+
+Simplify: 18 ÷ (3 × 2)
+2
+3
+4
+5
+3
+
+
+What is 25% of 200?
+25
+40
+50
+75
+50
+
+
+If a triangle has sides of lengths 3, 4, and 5, what type of triangle is it?
+Equilateral
+Isosceles
+Scalene
+Right
+Right
+
+
+What is the area of a rectangle with length 8 and width 6?
+36
+42
+46
+48
+48
+
+
+What is 9 squared?
+18
+72
+81
+99
+81
+
+
+If 2x = 10, what is x?
+2
+4
+5
+10
+5
