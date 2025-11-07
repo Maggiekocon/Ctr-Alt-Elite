@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Math Quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+  <header>
+    <h1 class="text-center text-primary p-3 bg-light rounded">Math Quiz Challenge</h1>
+  </header>
+
+  <div class="container py-5">
+
+    {% if questions %}
+      {% for q in questions %}
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h4 class="card-title mb-4">Question {{ forloop.counter }}</h4>
+
+            <!-- Quiz form for each question -->
+            <form class="quizForm" novalidate>
+              <div class="mb-4" role="radiogroup" aria-labelledby="questionLabel{{ forloop.counter }}">
+                <label id="questionLabel{{ forloop.counter }}" class="form-label fw-semibold">
+                  {{ q.question_text }}
+                </label>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="answer{{ forloop.counter }}" id="answerA{{ forloop.counter }}" value="{{ q.answer1 }}">
+                  <label class="form-check-label" for="answerA{{ forloop.counter }}">{{ q.answer1 }}</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="answer{{ forloop.counter }}" id="answerB{{ forloop.counter }}" value="{{ q.answer2 }}">
+                  <label class="form-check-label" for="answerB{{ forloop.counter }}">{{ q.answer2 }}</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="answer{{ forloop.counter }}" id="answerC{{ forloop.counter }}" value="{{ q.answer3 }}">
+                  <label class="form-check-label" for="answerC{{ forloop.counter }}">{{ q.answer3 }}</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="answer{{ forloop.counter }}" id="answerD{{ forloop.counter }}" value="{{ q.answer4 }}">
+                  <label class="form-check-label" for="answerD{{ forloop.counter }}">{{ q.answer4 }}</label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+              <!-- Hidden by default -->
+              <p class="correct-answer text-success mt-3 d-none">
+                Correct answer is: <strong>{{ q.correct_answer }}</strong>
+              </p>
+            </form>
+
+            <div id="result{{ forloop.counter }}" class="mt-4 alert d-none" role="status"></div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="alert alert-warning text-center">No questions available.</div>
+    {% endif %}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Handle form submissions independently
+    document.querySelectorAll('.quizForm').forEach((form, index) => {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const selected = form.querySelector('input[type="radio"]:checked');
+        const result = document.getElementById('result' + (index + 1));
+        const correctAnswer = form.querySelector('.correct-answer');
+
+        // Always reset visibility first
+        result.classList.add('d-none');
+        correctAnswer.classList.add('d-none');
+
+        if (!selected) {
+          result.textContent = 'Please choose an answer.';
+          result.className = 'mt-4 alert alert-warning';
+          return;
+        }
+
+        result.textContent = 'You selected: ' + selected.value;
+        result.className = 'mt-4 alert alert-info';
+
+        // ✅ Show correct answer paragraph only after submission
+        correctAnswer.classList.remove('d-none');
+      });
+    });
+  </script>
+</body>
+</html>
